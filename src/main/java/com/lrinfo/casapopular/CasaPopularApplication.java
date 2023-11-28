@@ -2,7 +2,7 @@ package com.lrinfo.casapopular;
 
 import com.lrinfo.casapopular.dominio.entidade.Familia;
 import com.lrinfo.casapopular.dominio.entidade.Pessoa;
-import com.lrinfo.casapopular.dominio.service.GeradorDeListaDeFamiliasAptasACasaPopular;
+import com.lrinfo.casapopular.dominio.service.GeradorDeFamiliasAptasACasaPopular;
 import com.lrinfo.casapopular.dominio.service.GerenciadorDoPontuador;
 import com.lrinfo.casapopular.dominio.service.PontuadorPorDependente1Ou2MenorQue18AnosDeFamilia;
 import com.lrinfo.casapopular.dominio.service.PontuadorPorDependente3OuMaisMenorQue18AnosDeFamilia;
@@ -17,15 +17,15 @@ import java.util.List;
 public class CasaPopularApplication {
 
     public static void main(String[] args) {
-        GeradorDeListaDeFamiliasAptasACasaPopular geradorDeLista = new GeradorDeListaDeFamiliasAptasACasaPopular();
+        GeradorDeFamiliasAptasACasaPopular geradorDeLista = new GeradorDeFamiliasAptasACasaPopular();
         PontuadorPorRendaMenorOuIgualA900Reais pontuadorPorRendaMenorQue900 = new PontuadorPorRendaMenorOuIgualA900Reais();
         PontuadorPorRendaMaiorQue900ReaisEMenorQue1500Reais pontuadorPorRendaMaiorQue900ReaisEMenorQue1500Reais = new PontuadorPorRendaMaiorQue900ReaisEMenorQue1500Reais();
         PontuadorPorDependente3OuMaisMenorQue18AnosDeFamilia pontuadorPorDependente3OuMaisMenorQue18Anos = new PontuadorPorDependente3OuMaisMenorQue18AnosDeFamilia();
         PontuadorPorDependente1Ou2MenorQue18AnosDeFamilia pontuadorPorDependente1ou2MenorQue18Ano = new PontuadorPorDependente1Ou2MenorQue18AnosDeFamilia();
 
         GerenciadorDoPontuador gerenciadorDoPontuador = new GerenciadorDoPontuador(pontuadorPorRendaMenorQue900,
-                pontuadorPorRendaMaiorQue900ReaisEMenorQue1500Reais, pontuadorPorDependente3OuMaisMenorQue18Anos, pontuadorPorDependente1ou2MenorQue18Ano
-        );
+                pontuadorPorRendaMaiorQue900ReaisEMenorQue1500Reais, pontuadorPorDependente1ou2MenorQue18Ano, pontuadorPorDependente3OuMaisMenorQue18Anos);
+
         List<Pessoa> membrosDaFamilia1 = new ArrayList<>();
         List<Pessoa> membrosDaFamilia2 = new ArrayList<>();
         List<Pessoa> membrosDaFamilia3 = new ArrayList<>();

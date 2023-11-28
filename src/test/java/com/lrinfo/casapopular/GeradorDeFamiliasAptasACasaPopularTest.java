@@ -2,15 +2,15 @@ package com.lrinfo.casapopular;
 
 import com.lrinfo.casapopular.dominio.entidade.Familia;
 import com.lrinfo.casapopular.dominio.entidade.Pessoa;
-import com.lrinfo.casapopular.dominio.service.GeradorDeListaDeFamiliasAptasACasaPopular;
+import com.lrinfo.casapopular.dominio.service.GeradorDeFamiliasAptasACasaPopular;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GeradorDeListaDeFamiliasAptasACasaPopularTest {
-    private GeradorDeListaDeFamiliasAptasACasaPopular geradorDeListaDePessoasAptas = new GeradorDeListaDeFamiliasAptasACasaPopular();
+public class GeradorDeFamiliasAptasACasaPopularTest {
+    private GeradorDeFamiliasAptasACasaPopular geradorDeListaDePessoasAptas = new GeradorDeFamiliasAptasACasaPopular();
     private Pessoa pessoa1 = new Pessoa(450.0, 18);
     private Pessoa pessoa2 = new Pessoa(1800.0, 19);
     private Pessoa pessoa3 = new Pessoa(300.0, 15);
