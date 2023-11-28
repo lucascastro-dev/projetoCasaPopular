@@ -17,12 +17,11 @@ public class GeradorDeFamiliasAptasACasaPopular implements IGeradorDeFamiliasApt
     public List<Familia> gerarListaOrdenada(List<Familia> familias) {
         List<Familia> familiasEmOrdemPrioritarias = new ArrayList<>();
 
-        if (familias != null) {
-            for (Familia familia : familias) {
+        if (familias != null)
+            familias.forEach(familia -> {
                 gerenciadorDoPontuador.pontuar(familia);
                 familiasEmOrdemPrioritarias.add(familia);
-            }
-        }
+            });
 
         return familiasEmOrdemPrioritarias.stream()
                 .sorted(Comparator.comparingInt(Familia::getTotalDePontosDaFamilia).reversed())

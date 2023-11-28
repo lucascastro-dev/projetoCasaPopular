@@ -60,7 +60,6 @@ public class CasaPopularApplication {
         listaDeFamilias.add(familia3);
 
         List<Familia> familiasAptas = geradorDeLista.gerarListaOrdenada(listaDeFamilias);
-        ;
 
         familiasAptas.forEach(familia -> {
             log.info("Total de pontos da família: " + familia.getTotalDePontosDaFamilia().toString());
