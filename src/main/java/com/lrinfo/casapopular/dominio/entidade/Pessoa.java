@@ -5,18 +5,12 @@ import lombok.ToString;
 
 @Getter
 @ToString
-public class Pessoa implements IPessoa {
-    Integer pontos = 0;
+public class Pessoa {
     Double renda = 0.0;
-    Integer dependentesMenorQue18 = 0;
+    Integer idade = 0;
 
-    public Pessoa(Double renda, Integer dependentesMenorQue18) {
+    public Pessoa(Double renda, Integer idade) {
         this.renda = renda;
-        this.dependentesMenorQue18 = dependentesMenorQue18;
-    }
-
-    @Override
-    public void setPontos(Integer novosPontos) {
-        this.pontos = novosPontos;
+        this.idade = idade;
     }
 }

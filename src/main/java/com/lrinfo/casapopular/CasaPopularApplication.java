@@ -1,10 +1,11 @@
 package com.lrinfo.casapopular;
 
+import com.lrinfo.casapopular.dominio.entidade.Familia;
 import com.lrinfo.casapopular.dominio.entidade.Pessoa;
-import com.lrinfo.casapopular.dominio.service.GeradorDeListaDePessoasAptasACasaPopular;
-import com.lrinfo.casapopular.dominio.service.GerenciadorDoPontuadorDeFamilia;
-import com.lrinfo.casapopular.dominio.service.PontuadorPorDependente1ou2MenorQue18Anos;
-import com.lrinfo.casapopular.dominio.service.PontuadorPorDependente3OuMaisMenorQue18Anos;
+import com.lrinfo.casapopular.dominio.service.GeradorDeListaDeFamiliasAptasACasaPopular;
+import com.lrinfo.casapopular.dominio.service.GerenciadorDoPontuador;
+import com.lrinfo.casapopular.dominio.service.PontuadorPorDependente1Ou2MenorQue18AnosDeFamilia;
+import com.lrinfo.casapopular.dominio.service.PontuadorPorDependente3OuMaisMenorQue18AnosDeFamilia;
 import com.lrinfo.casapopular.dominio.service.PontuadorPorRendaMaiorQue900ReaisEMenorQue1500Reais;
 import com.lrinfo.casapopular.dominio.service.PontuadorPorRendaMenorOuIgualA900Reais;
 import lombok.extern.slf4j.Slf4j;
@@ -16,37 +17,57 @@ import java.util.List;
 public class CasaPopularApplication {
 
     public static void main(String[] args) {
-        GeradorDeListaDePessoasAptasACasaPopular geradorDeLista = new GeradorDeListaDePessoasAptasACasaPopular();
-        List<Pessoa> listaDePessoas = new ArrayList<>();
+        GeradorDeListaDeFamiliasAptasACasaPopular geradorDeLista = new GeradorDeListaDeFamiliasAptasACasaPopular();
         PontuadorPorRendaMenorOuIgualA900Reais pontuadorPorRendaMenorQue900 = new PontuadorPorRendaMenorOuIgualA900Reais();
         PontuadorPorRendaMaiorQue900ReaisEMenorQue1500Reais pontuadorPorRendaMaiorQue900ReaisEMenorQue1500Reais = new PontuadorPorRendaMaiorQue900ReaisEMenorQue1500Reais();
-        PontuadorPorDependente3OuMaisMenorQue18Anos pontuadorPorDependente3OuMaisMenorQue18Anos = new PontuadorPorDependente3OuMaisMenorQue18Anos();
-        PontuadorPorDependente1ou2MenorQue18Anos pontuadorPorDependente1ou2MenorQue18Ano = new PontuadorPorDependente1ou2MenorQue18Anos();
+        PontuadorPorDependente3OuMaisMenorQue18AnosDeFamilia pontuadorPorDependente3OuMaisMenorQue18Anos = new PontuadorPorDependente3OuMaisMenorQue18AnosDeFamilia();
+        PontuadorPorDependente1Ou2MenorQue18AnosDeFamilia pontuadorPorDependente1ou2MenorQue18Ano = new PontuadorPorDependente1Ou2MenorQue18AnosDeFamilia();
 
-        GerenciadorDoPontuadorDeFamilia gerenciadorDoPontuadorDeFamilia = new GerenciadorDoPontuadorDeFamilia(pontuadorPorRendaMenorQue900,
+        GerenciadorDoPontuador gerenciadorDoPontuador = new GerenciadorDoPontuador(pontuadorPorRendaMenorQue900,
                 pontuadorPorRendaMaiorQue900ReaisEMenorQue1500Reais, pontuadorPorDependente3OuMaisMenorQue18Anos, pontuadorPorDependente1ou2MenorQue18Ano
         );
+        List<Pessoa> membrosDaFamilia1 = new ArrayList<>();
+        List<Pessoa> membrosDaFamilia2 = new ArrayList<>();
+        List<Pessoa> membrosDaFamilia3 = new ArrayList<>();
 
-        Pessoa pessoa1 = new Pessoa(600.0, 4);
-        Pessoa pessoa2 = new Pessoa(1700.0, 6);
-        Pessoa pessoa3 = new Pessoa(2500.0, 0);
-        Pessoa pessoa4 = new Pessoa(1500.0, 1);
+        Pessoa pessoa1 = new Pessoa(350.0, 19);
+        Pessoa pessoa2 = new Pessoa(100.0, 14);
+        Pessoa pessoa3 = new Pessoa(25.0, 13);
+        membrosDaFamilia1.add(pessoa1);
+        membrosDaFamilia1.add(pessoa2);
+        membrosDaFamilia1.add(pessoa3);
 
-        gerenciadorDoPontuadorDeFamilia.pontuar(pessoa1);
-        gerenciadorDoPontuadorDeFamilia.pontuar(pessoa2);
-        gerenciadorDoPontuadorDeFamilia.pontuar(pessoa3);
-        gerenciadorDoPontuadorDeFamilia.pontuar(pessoa4);
+        Pessoa pessoa4 = new Pessoa(900.0, 25);
+        membrosDaFamilia2.add(pessoa4);
 
-        listaDePessoas.add(pessoa1);
-        listaDePessoas.add(pessoa2);
-        listaDePessoas.add(pessoa3);
-        listaDePessoas.add(pessoa4);
+        Pessoa pessoa5 = new Pessoa(400.0, 27);
+        Pessoa pessoa6 = new Pessoa(100.0, 9);
+        Pessoa pessoa7 = new Pessoa(100.0, 5);
+        Pessoa pessoa8 = new Pessoa(100.0, 12);
+        membrosDaFamilia3.add(pessoa5);
+        membrosDaFamilia3.add(pessoa6);
+        membrosDaFamilia3.add(pessoa7);
+        membrosDaFamilia3.add(pessoa8);
 
-        List<Pessoa> pessoasAptas = geradorDeLista.gerarListaOrdenada(listaDePessoas);
+        Familia familia1 = new Familia(membrosDaFamilia1);
+        Familia familia2 = new Familia(membrosDaFamilia2);
+        Familia familia3 = new Familia(membrosDaFamilia3);
+
+        gerenciadorDoPontuador.pontuar(familia1);
+        gerenciadorDoPontuador.pontuar(familia2);
+        gerenciadorDoPontuador.pontuar(familia3);
+
+        List<Familia> listaDeFamilias = new ArrayList<>();
+
+        listaDeFamilias.add(familia1);
+        listaDeFamilias.add(familia2);
+        listaDeFamilias.add(familia3);
+
+        List<Familia> familiasAptas = geradorDeLista.gerarListaOrdenada(listaDeFamilias);
         ;
 
-        pessoasAptas.forEach(pessoa -> {
-            log.info(pessoa.toString());
+        familiasAptas.forEach(familia -> {
+            log.info("Total de pontos da família: " + familia.getTotalDePontosDaFamilia().toString());
         });
     }
 }

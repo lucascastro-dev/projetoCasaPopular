@@ -1,18 +1,21 @@
 package com.lrinfo.casapopular.dominio.service;
 
-import com.lrinfo.casapopular.dominio.entidade.Pessoa;
+import com.lrinfo.casapopular.dominio.entidade.Familia;
 import com.lrinfo.casapopular.dominio.service.interfaces.IPontuadorDeFamilia;
-import org.springframework.stereotype.Component;
+
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.atomic.DoubleAdder;
 
 public class PontuadorPorRendaMenorOuIgualA900Reais implements IPontuadorDeFamilia {
     @Override
-    public void pontuar(Pessoa pessoa) {
-        Integer pontosParaAdicionar = pessoa.getPontos();
+    public void pontuar(Familia familia) {
+        DoubleAdder rendaTotal = new DoubleAdder();
+        Integer totalDePontosAtual = familia.getTotalDePontosDaFamilia();
 
-        if (pessoa.getRenda().intValue() <= 900)
-            pontosParaAdicionar = somarPontos(pessoa.getPontos());
+        familia.getMembrosDaFamilia().forEach(pessoa -> rendaTotal.add(pessoa.getRenda()));
 
-        pessoa.setPontos(pontosParaAdicionar);
+        if (rendaTotal.intValue() <= 900)
+            familia.setTotalDePontosDaFamilia(somarPontos(totalDePontosAtual));
     }
 
     @Override
