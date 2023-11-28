@@ -17,7 +17,6 @@ import java.util.List;
 public class CasaPopularApplication {
 
     public static void main(String[] args) {
-        GeradorDeFamiliasAptasACasaPopular geradorDeLista = new GeradorDeFamiliasAptasACasaPopular();
         PontuadorPorRendaMenorOuIgualA900Reais pontuadorPorRendaMenorQue900 = new PontuadorPorRendaMenorOuIgualA900Reais();
         PontuadorPorRendaMaiorQue900ReaisEMenorQue1500Reais pontuadorPorRendaMaiorQue900ReaisEMenorQue1500Reais = new PontuadorPorRendaMaiorQue900ReaisEMenorQue1500Reais();
         PontuadorPorDependente3OuMaisMenorQue18AnosDeFamilia pontuadorPorDependente3OuMaisMenorQue18Anos = new PontuadorPorDependente3OuMaisMenorQue18AnosDeFamilia();
@@ -25,6 +24,8 @@ public class CasaPopularApplication {
 
         GerenciadorDoPontuador gerenciadorDoPontuador = new GerenciadorDoPontuador(pontuadorPorRendaMenorQue900,
                 pontuadorPorRendaMaiorQue900ReaisEMenorQue1500Reais, pontuadorPorDependente1ou2MenorQue18Ano, pontuadorPorDependente3OuMaisMenorQue18Anos);
+
+        GeradorDeFamiliasAptasACasaPopular geradorDeLista = new GeradorDeFamiliasAptasACasaPopular(gerenciadorDoPontuador);
 
         List<Pessoa> membrosDaFamilia1 = new ArrayList<>();
         List<Pessoa> membrosDaFamilia2 = new ArrayList<>();
@@ -53,12 +54,7 @@ public class CasaPopularApplication {
         Familia familia2 = new Familia(membrosDaFamilia2);
         Familia familia3 = new Familia(membrosDaFamilia3);
 
-        gerenciadorDoPontuador.pontuar(familia1);
-        gerenciadorDoPontuador.pontuar(familia2);
-        gerenciadorDoPontuador.pontuar(familia3);
-
         List<Familia> listaDeFamilias = new ArrayList<>();
-
         listaDeFamilias.add(familia1);
         listaDeFamilias.add(familia2);
         listaDeFamilias.add(familia3);
