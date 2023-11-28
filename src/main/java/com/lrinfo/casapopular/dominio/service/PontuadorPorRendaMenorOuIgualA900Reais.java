@@ -2,8 +2,8 @@ package com.lrinfo.casapopular.dominio.service;
 
 import com.lrinfo.casapopular.dominio.entidade.Familia;
 import com.lrinfo.casapopular.dominio.service.interfaces.IPontuadorDeFamilia;
+import com.lrinfo.casapopular.dominio.util.Constants;
 
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.DoubleAdder;
 
 public class PontuadorPorRendaMenorOuIgualA900Reais implements IPontuadorDeFamilia {
@@ -20,7 +20,7 @@ public class PontuadorPorRendaMenorOuIgualA900Reais implements IPontuadorDeFamil
 
     @Override
     public Integer somarPontos(Integer pontos) {
-        pontos += 5;
+        pontos += Constants.PONTOS_RENDA_MENOR_OU_IGUAL_A_900;
         return pontos;
     }
 }
